@@ -32,7 +32,7 @@ monochrome-rs -i <INPUT> hex <HEX> --saturation <SATURATION>
 ##### Base Image:
 ![Base Itachi](./assets/itachi.png)
 
-##### RGB
+##### HEX
 With this input color: ![](./assets/9ccfd8_dot.svg)
 
 ```bash
