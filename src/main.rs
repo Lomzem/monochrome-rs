@@ -2,11 +2,10 @@ use std::error::Error;
 
 use args::Args;
 use clap::Parser;
-use image::{GenericImageView, ImageBuffer, Rgb};
-use utils::hsl_to_rgb;
+use hsl::HSL;
+use image::{GenericImageView, ImageBuffer, Pixel, Rgb};
 
 mod args;
-mod utils;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args = Args::parse();
@@ -25,15 +24,14 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut output: ImageBuffer<Rgb<u8>, Vec<u8>> = ImageBuffer::new(width, height);
 
     for (x, y, pixel) in img.pixels() {
-        let r = pixel[0] as f32;
-        let g = pixel[1] as f32;
-        let b = pixel[2] as f32;
+        let mut pixel_hsl = HSL::from_rgb(&pixel.to_rgb().0);
 
-        let luminance = (0.2126 * r) + (0.7152 * g) + (0.0722 * b);
-        let lightness = (luminance / 255.0) * 100.0;
-        let rgb = hsl_to_rgb(args.hue, args.saturation, lightness);
+        pixel_hsl.h = args.hue;
+        pixel_hsl.s = args.saturation / 100.0;
 
-        output.put_pixel(x, y, Rgb([rgb.0 as u8, rgb.1 as u8, rgb.2 as u8]))
+        let pixel_rgb = HSL::to_rgb(&pixel_hsl);
+
+        output.put_pixel(x, y, Rgb(pixel_rgb.into()));
     }
 
     output.save(&args.output)?;

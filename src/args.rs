@@ -10,8 +10,8 @@ pub struct Args {
     pub output: PathBuf,
 
     #[clap(long)]
-    pub hue: f32,
+    pub hue: f64,
 
     #[clap(short, long)]
-    pub saturation: f32,
+    pub saturation: f64,
 }
