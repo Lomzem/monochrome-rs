@@ -1,4 +1,4 @@
-use clap::Parser;
+use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
 #[derive(Parser, Debug)]
@@ -7,11 +7,24 @@ pub struct Args {
     pub input: PathBuf,
 
     #[clap(short, long)]
-    pub output: PathBuf,
+    pub output: Option<PathBuf>,
 
-    #[clap(long)]
-    pub hue: f64,
+    #[clap(subcommand)]
+    pub color_mode: ColorMode,
+}
 
-    #[clap(short, long)]
-    pub saturation: f64,
+#[derive(Subcommand, Debug)]
+pub enum ColorMode {
+    Hsl {
+        #[clap(long)]
+        hue: f64,
+        #[clap(short, long)]
+        saturation: f64,
+    },
+
+    Rgb {
+        rgb: String,
+        #[clap(short, long)]
+        saturation: Option<f64>,
+    },
 }
