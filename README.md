@@ -42,7 +42,7 @@ monochrome-rs -i itachi.png hex '#9ccfd8'
 ![Output Itachi #9ccfd8](./assets/itachi_9ccfd8.png)
 
 ##### HSL
-With this input color: ![](./assets/267_20_dot.svg)
+With this input hue: ![](./assets/267_20_dot.svg)
 ```bash
 monochrome-rs -i itachi.png hsl --hue 267 --saturation 20
 ```
