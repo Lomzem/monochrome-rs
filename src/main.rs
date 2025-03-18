@@ -16,12 +16,12 @@ fn main() -> Result<(), Box<dyn Error>> {
             s: saturation / 100.0,
             l: 1.0,
         },
-        ColorMode::Rgb { rgb, saturation } => {
-            let rgb = rgb.trim_matches('#');
+        ColorMode::Hex { hex, saturation } => {
+            let hex = hex.trim_matches('#');
 
-            let red = u8::from_str_radix(&rgb[0..2], 16)?;
-            let green = u8::from_str_radix(&rgb[2..4], 16)?;
-            let blue = u8::from_str_radix(&rgb[4..6], 16)?;
+            let red = u8::from_str_radix(&hex[0..2], 16)?;
+            let green = u8::from_str_radix(&hex[2..4], 16)?;
+            let blue = u8::from_str_radix(&hex[4..6], 16)?;
 
             let mut hsl = HSL::from_rgb(&[red, green, blue]);
 

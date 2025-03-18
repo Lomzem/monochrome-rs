@@ -27,9 +27,9 @@ pub enum ColorMode {
         saturation: f64,
     },
 
-    #[clap(about = "Convert the image using RGB values")]
-    Rgb {
-        rgb: String,
+    #[clap(about = "Convert the image using Hex values")]
+    Hex {
+        hex: String,
         #[clap(short, long)]
         saturation: Option<f64>,
     },
