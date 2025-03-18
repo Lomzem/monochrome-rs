@@ -14,7 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         ColorMode::Hsl { hue, saturation } => HSL {
             h: hue,
             s: saturation / 100.0,
-            l: 1.0,
+            l: 1.0, // this lightness value is ignored
         },
         ColorMode::Hex { hex, saturation } => {
             let hex = hex.trim_matches('#');
